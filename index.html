@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#faecd9">
+<title>С ХУЯ ЛИ?</title>
+<style>
+:root{--bg:#faecd9;--paper:#fff7eb;--ink:#392318;--muted:#866b56;--rust:#91300f;--rust2:#b84c25;--line:#e5c9a5;--olive:#7e8744;--shadow:0 12px 32px #6d3b1712}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,textarea,input{font:inherit}button{cursor:pointer}.app{max-width:560px;min-height:100dvh;margin:auto;padding:20px 18px 34px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:8px 2px 18px}.brand{font-family:Georgia,serif;font-style:italic;font-size:35px;font-weight:700;letter-spacing:-1.5px}.streak{border:1px solid var(--line);border-radius:30px;padding:10px 14px;color:var(--rust);font-weight:700;background:#fff8ed}
+.subline{height:1px;background:var(--line);margin:2px 0 18px}.center{text-align:center}.muted{color:var(--muted)}.small{font-size:13px}.section{margin:20px 0}.pillrow{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.pill{background:var(--paper);border:1.5px solid var(--line);border-radius:30px;padding:11px 16px;color:var(--ink);font-weight:650}
+.mode{display:grid;grid-template-columns:1fr 1fr;padding:5px;border:2px solid var(--line);border-radius:22px;background:#fff8ee;gap:4px}.mode button{border:0;background:transparent;padding:14px 7px;border-radius:17px;color:var(--muted);font-weight:700}.mode button.active{background:#f9dfc8;color:var(--rust);box-shadow:inset 0 0 0 2px var(--rust)}
+.prompt-label{font-size:13px;letter-spacing:3px;font-weight:800;color:var(--rust);margin:27px 0 12px}.hero{font-family:Georgia,serif;font-size:clamp(34px,8vw,48px);line-height:1.1;letter-spacing:-1.3px;margin:10px auto 20px;max-width:490px;min-height:116px;display:flex;align-items:center;justify-content:center}
+.wheel{width:180px;height:180px;margin:16px auto 20px;border-radius:50%;border:9px solid #e8d0ad;background:conic-gradient(#f1d9b9 0 36deg,#f9ead4 36deg 72deg,#e7d1ad 72deg 108deg,#f9ead4 108deg 144deg,#e7d1ad 144deg 180deg,#f9ead4 180deg 216deg,#e7d1ad 216deg 252deg,#f9ead4 252deg 288deg,#e7d1ad 288deg 324deg,#f9ead4 324deg);display:grid;place-items:center;box-shadow:var(--shadow);position:relative}
+.wheel:before{content:"";position:absolute;inset:25px;border:2px dashed #b99468;border-radius:50%}.wheel span{font-size:48px;z-index:1}.spin{background:var(--rust);color:white;border:0;border-radius:40px;padding:18px 36px;font-size:20px;font-weight:750;box-shadow:0 7px 0 #69220b;min-width:220px}.spin:active{transform:translateY(3px);box-shadow:0 4px 0 #69220b}
+.secondary{border:1px solid var(--line);background:#fff6e9;border-radius:30px;padding:12px 18px;color:var(--muted);font-weight:650}.hint{font-size:14px;color:var(--muted);line-height:1.5;margin:18px auto;max-width:420px}
+.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:14px 0}.cat{border:1px solid var(--line);border-radius:17px;background:#fff7eb;padding:12px;text-align:left;color:var(--ink);font-weight:700}.cat small{display:block;color:var(--muted);font-weight:400;margin-top:4px}.cat.selected{outline:2px solid var(--rust);background:#f9dfc8}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow);margin:16px 0}
+.hidden{display:none!important}.timer{font-size:52px;font-weight:800;font-variant-numeric:tabular-nums;margin:12px 0}.mic{width:92px;height:92px;border-radius:50%;border:0;background:var(--rust);color:white;font-size:34px}.mic.recording{background:#b5281b;animation:pulse 1.2s infinite}@keyframes pulse{50%{box-shadow:0 0 0 14px #b5281b22}}
+textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:14px;background:#fffdf8;padding:13px;color:var(--ink);resize:vertical;line-height:1.5}
+.action{width:100%;border:0;border-radius:16px;padding:15px;background:var(--rust);color:#fff;font-weight:750;margin-top:10px}.action.light{background:#f3dfc7;color:var(--rust);border:1px solid var(--line)}
+.score{font-family:Georgia,serif;font-size:54px;color:var(--rust);font-weight:700}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:#f8ead8;border-radius:14px;padding:12px}.stat b{font-size:23px;display:block}.quote{font-family:Georgia,serif;font-size:21px;line-height:1.3}.nav{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:15px 0 0;margin-top:28px;color:var(--muted);font-size:13px}.nav button{background:none;border:0;color:inherit}.nav button.active{color:var(--rust);font-weight:800}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#392318;color:white;padding:12px 18px;border-radius:30px;max-width:90%;font-size:14px;z-index:5}
+@media(min-width:560px){.app{padding-top:28px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand">С ходу</div><div class="streak">🍀 <span id="streak">1 день</span></div></header>
+<div class="subline"></div>
+<main id="home">
+<p class="center muted small" id="today">Сегодня твой день для выпуска пара</p>
+<div class="section pillrow"><button class="pill" id="lang">🇷🇺 Русский⌄</button><button class="pill" id="allTopics">✦ Все темы⌄</button></div>
+<div class="section mode"><button class="active" data-mode="quick">С ходу <span class="muted">1 минута</span></button><button data-mode="deep">Глубоко <span class="muted">до 10 минут</span></button></div>
+<div class="center prompt-label">ГОТОВЫ?</div>
+<div class="wheel"><span>🎡</span></div>
+<div class="hero" id="question">Крутите — тема выпадет сама</div>
+<div class="center"><button class="secondary" id="chooseCat">⚙ Выбрать тему</button></div>
+<div class="center" style="margin:24px 0 18px"><button class="spin" id="spin">↗ Крутить</button></div>
+<p class="hint center">Никаких сообщений начальнику. Никаких публикаций. Только ты, микрофон и всё, что накопилось.</p>
+<div class="panel hidden" id="categoryPanel"><b>Выбери, что сегодня бесит</b><div class="categories" id="categories"></div></div>
+</main>
+<section id="record" class="hidden">
+<div class="center prompt-label">ТВОЯ ТЕМА</div><div class="hero" id="recordQuestion"></div>
+<div class="panel center"><div class="muted small" id="modeLabel">БЫСТРЫЙ РАУНД</div><div class="timer" id="timer">01:00</div><button class="mic" id="mic">🎙</button><p class="muted small" id="recordStatus">Нажми на микрофон, чтобы начать запись</p><button class="action light" id="stop" disabled>Завершить запись</button></div>
+<p class="muted small">Запись остаётся на этом устройстве в рамках демоверсии. Не отправляй сюда чужие личные данные.</p>
+<div class="panel"><b>Текст монолога (для демо-анализа)</b><p class="muted small">Пока автоматическая расшифровка не подключена. Вставь сюда то, что сказал(а), чтобы посмотреть демонстрационный разбор.</p><textarea id="transcript" placeholder="Начинай с самого главного…"></textarea><button class="action" id="analyze">Получить вердикт</button></div>
+</section>
+<section id="result" class="hidden">
+<div class="center prompt-label">ТВОЙ ВЕРДИКТ</div><div class="center"><div style="font-size:48px">🏆</div><h1>НУ ТЫ ДАЛ(А)!</h1><div class="score" id="score">86/100</div><p class="muted small">Игровой индекс выразительности · демо</p></div>
+<div class="panel"><div class="statgrid" id="stats"></div></div>
+<div class="panel"><b>🤌 ВЕРДИКТ ИИ (демоверсия)</b><p id="verdict" class="quote">Сегодня ты высказался с размахом.</p></div>
+<div class="panel"><b>ЦИТАТА РАУНДА</b><p id="quote" class="quote">«Иногда молчание — золото, но сегодня у нас другой бюджет».</p></div>
+<button class="action" id="again">Ещё раунд</button><button class="action light" id="tohome">На главную</button>
+</section>
+<nav class="nav"><button class="active" data-page="home">⌂ Сегодня</button><button data-page="home">▣ Темы</button><button data-page="result">▥ Прогресс</button><button data-page="home">♙ Профиль</button></nav>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script>
+const topics=[
+["Начальство","Что эти гении опять придумали?","Какое рабочее решение сегодня заставило тебя закатить глаза?","Что бы ты сказал начальству, если бы не нужно было подбирать слова?"],
+["Коллеги","Кто тебя сегодня выбесил?","Что эти прекрасные люди опять натворили?","Кто умудряется создавать проблемы быстрее, чем решать их?"],
+["Моя жизнь","Какого чёрта всё опять не по плану?","Что ты постоянно откладываешь, хотя уже пора?","Какую глупость ты опять совершил(а)?"],
+["Меня бесит","Что раздражает тебя прямо сейчас?","Какая мелочь способна испортить тебе день?","На что у тебя уже заканчивается терпение?"],
+["Человечество","Люди, вы серьёзно?","Какую человеческую привычку пора отправить в музей?","Что человечество делает совершенно неправильно?"],
+["Сегодня","Кто или что испортило тебе сегодняшний день?","Что сегодня пошло не по плану?","Какой момент дня заслуживает отдельного проклятия?"],
+["Здоровье","Организм, у нас опять проблемы?","Что в вопросах самочувствия тебя сегодня достало?","На что сегодня ушло слишком много сил?"],
+["Политика","Что происходит, господа?","Какое событие или решение тебя возмутило?","Что в происходящем кажется тебе полным абсурдом?"],
+["Еда","Почему это вообще называют едой?","Какое блюдо сегодня тебя разочаровало?","За что этому повару платят деньги?"],
+["Погода","За что нам это всё?","Что тебя больше всего бесит в сегодняшней погоде?","Какая погода способна испортить тебе всё?"]
+];
+let mode="quick", selected=null, current=null, readyToStart=false, seconds=60, interval=null, recorder=null, chunks=[], stream=null, audioUrl=null;
+const $=id=>document.getElementById(id);
+function toast(s){$("toast").textContent=s;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2500)}
+function page(name){["home","record","result"].forEach(x=>$(x).classList.toggle("hidden",x!==name));window.scrollTo(0,0)}
+function drawCats(){$("categories").innerHTML=topics.map((t,i)=>`<button class="cat ${selected===i?"selected":""}" data-i="${i}">${["💼","👥","🙋","🤬","🌍","📅","🩺","🏛️","🍕","🌦️"][i]} ${t[0]}<small>Случайный вопрос</small></button>`).join("");document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{selected=+b.dataset.i;drawCats();toast("Тема выбрана: "+topics[selected][0])})}
+document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll("[data-mode]").forEach(x=>x.classList.toggle("active",x===b))});
+$("chooseCat").onclick=()=>{$("categoryPanel").classList.toggle("hidden");drawCats()};
+$("allTopics").onclick=()=>{selected=null;$("categoryPanel").classList.toggle("hidden");drawCats()};
+$("spin").onclick=()=>{if(readyToStart && current){startRound();return}let i=selected===null?Math.floor(Math.random()*topics.length):selected;let q=topics[i][1+Math.floor(Math.random()*3)];current={category:topics[i][0],question:q};readyToStart=true;$("question").textContent=q;$("recordQuestion").textContent=q;$("spin").textContent="🎙 Начать раунд";toast("Выпало: "+topics[i][0]);};
+function startRound(){if(!current){$("spin").click()}seconds=mode==="quick"?60:600;$("timer").textContent=fmt(seconds);$("modeLabel").textContent=mode==="quick"?"БЫСТРЫЙ РАУНД":"ГЛУБОКИЙ РАУНД";$("recordStatus").textContent="Нажми на микрофон, чтобы начать запись";$("transcript").value="";$("mic").classList.remove("recording");$("stop").disabled=true;page("record")}
+$("question").addEventListener("click",()=>{if(current)startRound()});
+$("chooseCat").insertAdjacentHTML("afterend",'<p class="center muted small">После прокрутки нажми «Начать раунд»</p>');
+function fmt(n){return String(Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0")}
+async function beginRec(){try{stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{const blob=new Blob(chunks,{type:recorder.mimeType||"audio/webm"});if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(blob);$("recordStatus").textContent="Запись готова. Добавь текст монолога для демо-анализа.";stream.getTracks().forEach(t=>t.stop())};recorder.start();$("mic").classList.add("recording");$("stop").disabled=false;$("recordStatus").textContent="Идёт запись. Говори всё, что накопилось.";interval=setInterval(()=>{seconds--; $("timer").textContent=fmt(seconds);if(seconds<=0)stopRec()},1000)}catch(e){toast("Не удалось включить микрофон. Проверь разрешение в браузере.")}}
+function stopRec(){if(interval)clearInterval(interval);if(recorder&&recorder.state==="recording")recorder.stop();$("mic").classList.remove("recording");$("stop").disabled=true}
+$("mic").onclick=()=>{if(!recorder||recorder.state!=="recording")beginRec();else stopRec()};$("stop").onclick=stopRec;
+$("analyze").onclick=()=>{const t=$("transcript").value.trim();if(!t){toast("Добавь текст монолога для демонстрационного анализа");return}const words=t.match(/\S+/g)||[];const profanity=(t.match(/(?:бля|сука|хуй|пизд|еба|нахуй|мудак|долбо|говно|дерьм|чёрт|черт)/gi)||[]).length;const fillers=(t.match(/\b(?:ну|короче|типа|как бы|в общем|значит)\b/gi)||[]).length;const insults=(t.match(/(?:идиот|дурак|мудак|дебил|тупиц|козёл|козел|урод)/gi)||[]).length;const score=Math.min(99,Math.max(25,Math.round(50+Math.min(25,words.length/8)+Math.min(20,profanity*2)-Math.min(15,fillers))));$("score").textContent=score+"/100";$("stats").innerHTML=`<div class="stat"><b>${words.length}</b><span class="muted small">слов</span></div><div class="stat"><b>${profanity}</b><span class="muted small">ругательств по словарю</span></div><div class="stat"><b>${insults}</b><span class="muted small">оскорбительных слов по словарю</span></div><div class="stat"><b>${fillers}</b><span class="muted small">слов-паразитов</span></div>`;$("verdict").textContent=profanity>5?"Ты не просто высказался — ты устроил словесный фейерверк. Пожалуйста, оставь микрофон остывать.": "Монолог принят. Мысли вышли на прогулку, а напряжение хотя бы получило микрофон. Неплохая работа.";let sentences=t.split(/[.!?]+/).map(x=>x.trim()).filter(x=>x.length>18);$("quote").textContent="«"+(sentences.sort((a,b)=>b.length-a.length)[0]||t.slice(0,100))+"»";page("result")};
+$("again").onclick=()=>{current=null;readyToStart=false;$("spin").textContent="↗ Крутить";$("question").textContent="Крутите — тема выпадет сама";page("home")};$("tohome").onclick=()=>page("home");
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("active",x===b));page(b.dataset.page==="result"?"result":"home")});
+$("lang").onclick=()=>toast("Русский язык — пока единственный в демоверсии");
+drawCats();
+</script>
+</body></html>
